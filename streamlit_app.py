@@ -13,7 +13,7 @@ my_fruit_list = my_fruit_list.set_index("Fruit")
 # Lets insert pick list here so that parents can pick the fruits they want to include in Smoothie
 
 # streamlit.multiselect("Pick Fruits from the list for Smoothie", list(my_fruit_list.index))
-fruit_selected=streamlit.select("Pick Fruits from the list for Smoothie", list(my_fruit_list.index), ['Avacadoes', 'Strawberries'])
+fruit_selected=streamlit.multiselect("Pick Fruits from the list for Smoothie", list(my_fruit_list.index), ['Avacado', 'Strawberries'])
 fruit_to_show=my_fruit_list.loc[fruit_selected]
 
 #Display in the table on the page
