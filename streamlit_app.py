@@ -8,7 +8,7 @@ streamlit.text('Kale, Spinach & Rocket Smothie')
 streamlit.text('Hard Boiled Free-Range Egg')
 
 my_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
-my_fruit_list = my_fruit_list.set_index("fruit")
+my_fruit_list = my_fruit_list.set_index("Fruit")
 
 # Lets insert pick list here so that parents can pick the fruits they want to include in Smoothie
 streamlit.multiselect("Pick Fruits from the list for Smoothie", list(my_fruit_list.index))
