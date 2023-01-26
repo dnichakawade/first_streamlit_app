@@ -11,7 +11,7 @@ my_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.co
 my_fruit_list = my_fruit_list.set_index("Fruit")
 
 # Lets insert pick list here so that parents can pick the fruits they want to include in Smoothie
-streamlit.multiselect("Pick Fruits from the list for Smoothie", list(my_fruit_list.index))
+streamlit.multiselect("Pick Fruits from the list for Smoothie", list(my_fruit_list.index), ['Avacadoes', 'Strawberries'])
 
 #Display in the table on the page
 streamlit.dataframe(my_fruit_list)
