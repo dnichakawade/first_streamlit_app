@@ -6,7 +6,7 @@ my_cur.execute("select CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 my_data_row = my_cur.fetchone()
 streamlit.text("Hello from Snowflake Database:")
 streamlit.text(my_data_row)
-                                     
+
 
 
 # 1 import streamlit
@@ -32,4 +32,3 @@ streamlit.text(my_data_row)
 
 # 1 #Display fruits to show
 # 1 streamlit.dataframe(fruits_to_show)
-
