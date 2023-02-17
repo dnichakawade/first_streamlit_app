@@ -5,7 +5,7 @@ import snowflake.connector
 try:
   my_cnx = snowflake.connector.connect(**streamlit.secrets[snowflake])
 except Exception as e:
-  return [[e]]
+  return [[e, e]]
 
 # my_cnx = snowflake.connector.connect(**streamlit.secrets[snowflake])
 
