@@ -5,12 +5,9 @@ import snowflake.connector
 try:
   my_cnx = snowflake.connector.connect(**streamlit.secrets[snowflake])
 except Exception as e:
-  return [[e, e]]
+  return [[e]]
 
-# try:
-#  my_cnx = snowflake.connector.connect(**streamlit.secrets[snowflake])
-# except Exception as e:
-#  return [[e, e]]
+# my_cnx = snowflake.connector.connect(**streamlit.secrets[snowflake])
 
 my_cur = my_cnx.cursor()
 my_cur.execute("select CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
