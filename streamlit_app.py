@@ -1,20 +1,49 @@
-import streamlit
+# streamlit_app.py
 
+import streamlit as st
 import snowflake.connector
 
-try:
-  my_cnx = snowflake.connector.connect(**streamlit.secrets[snowflake])
-except Exception as e:
-  return [[e, e]]
+# Initialize connection.
+# Uses st.cache_resource to only run once.
+@st.cache_resource
+def init_connection():
+    return snowflake.connector.connect(
+        **st.secrets["snowflake"], client_session_keep_alive=True
+    )
+
+conn = init_connection()
+
+# Perform query.
+# Uses st.cache_data to only rerun when the query changes or after 10 min.
+@st.cache_data(ttl=600)
+def run_query(query):
+    with conn.cursor() as cur:
+        cur.execute(query)
+        return cur.fetchall()
+
+rows = run_query("SELECT * from  fruityvice;")
+
+# Print results.
+for row in rows:
+    st.write(f"{row[0]} has a :{row[1]}:")
+
+#import streamlit
+
+#import snowflake.connector
+
+#try:
+#  my_cnx = snowflake.connector.connect(**streamlit.secrets[snowflake])
+#except Exception as e:
+#  return [[e, e]]
 
 # my_cnx = snowflake.connector.connect(**streamlit.secrets[snowflake])
 
-my_cur = my_cnx.cursor()
-my_cur.execute("select CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
-my_data_row = my_cur.fetchone()
+#my_cur = my_cnx.cursor()
+#my_cur.execute("select CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+#my_data_row = my_cur.fetchone()
 
-streamlit.text("Hello from Snowflake Database:")
-streamlit.text(my_data_row)
+#streamlit.text("Hello from Snowflake Database:")
+#streamlit.text(my_data_row)
 
 
 
