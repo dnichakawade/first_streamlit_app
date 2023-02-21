@@ -21,7 +21,7 @@ def run_query(query):
         cur.execute(query)
         return cur.fetchall()
 
-rows = run_query("SELECT * from  fruityvice;")
+rows = run_query("use WAREHOUSE COMPUTE_WH; SELECT * from  fruityvice;")
 
 # Print results.
 for row in rows:
